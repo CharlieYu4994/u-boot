@@ -872,6 +872,7 @@ config SIFIVE_SERIAL
 	help
 	  This driver supports the SiFive UART. If unsure say N.
 
+#Patch StarFive
 config STARFIVE_SERIAL
 	bool "StarFive JH7100 UART support"
 	depends on DM_SERIAL

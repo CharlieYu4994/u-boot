@@ -24,7 +24,7 @@ config TARGET_SIFIVE_UNMATCHED
 	bool "Support SiFive Unmatched Board"
 	select SYS_CACHE_SHIFT_6
 
-config TARGET_STARFIVE_JH7100
+config TARGET_STARFIVE_JH7100 #Patch StarFive
 	bool "Support StarFive development Boards based on JH7100 Soc"
 	select SYS_CACHE_SHIFT_6
 
@@ -37,6 +37,7 @@ config TARGET_OPENPITON_RISCV64
 
 endchoice
 
+#Patch StarFive
 choice
 	prompt "JH7100 Soc development Board variants"
 	default JH_STARLIGHT

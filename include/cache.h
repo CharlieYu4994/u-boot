@@ -41,6 +41,7 @@ struct cache_ops {
 	 */
 	int (*disable)(struct udevice *dev);
 
+	//Patch StarFive
 	/**
 	 * flush_range() - Flush cache in a range
 	 *
@@ -80,6 +81,7 @@ int cache_enable(struct udevice *dev);
  */
 int cache_disable(struct udevice *dev);
 
+//Patch StarFive
 /**
  * flush_range() - Flush cache
  *

@@ -8,16 +8,19 @@
 #include <dm.h>
 #include <asm/io.h>
 #include <linux/bitfield.h>
+//Patch StarFive
 #include <fdt_support.h>
 
 #define SIFIVE_CCACHE_CONFIG		0x000
 #define SIFIVE_CCACHE_CONFIG_WAYS	GENMASK(15, 8)
 
+//Patch StarFive
 #define SIFIVE_CCACHE_WAY_ENABLE	0x008
 #define SIFIVE_CCACHE_FLUSH64		0x200
 
 static bool range_check = false;
 
+//Patch StarFive
 struct sifive_ccache {
 	void __iomem *base;
 	int cache_line_size;
@@ -35,10 +38,12 @@ static int sifive_ccache_enable(struct udevice *dev)
 	config = readl(priv->base + SIFIVE_CCACHE_CONFIG);
 	ways = FIELD_GET(SIFIVE_CCACHE_CONFIG_WAYS, config);
 
+//Patch StarFive
 #if CONFIG_IS_ENABLED(SIFIVE_CCACHE_WAYENABLE_OPT)
 	if (CONFIG_SIFIVE_CCACHE_WAYENABLE_NUM < ways)
 		ways = CONFIG_SIFIVE_CCACHE_WAYENABLE_NUM;
 #endif
+
 	writel(ways - 1, priv->base + SIFIVE_CCACHE_WAY_ENABLE);
 
 	return 0;
@@ -53,6 +58,7 @@ static int sifive_ccache_get_info(struct udevice *dev, struct cache_info *info)
 	return 0;
 }
 
+//Patch StarFive
 static int sifive_ccache_flush_range(struct udevice *dev,
 				     unsigned long start, unsigned long end)
 {
@@ -93,6 +99,7 @@ static const struct cache_ops sifive_ccache_ops = {
 	.flush_range = sifive_ccache_flush_range,
 };
 
+//Patch StarFive
 static int sifive_ccache_probe(struct udevice *dev)
 {
 	int ret;

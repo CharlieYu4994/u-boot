@@ -538,6 +538,7 @@ int phy_mscc_init(void);
 int phy_fixed_init(void);
 int phy_ncsi_init(void);
 int phy_xilinx_gmii2rgmii_init(void);
+//Patch StarFive
 int phy_yutai_init(void);
 
 int board_phy_config(struct phy_device *phydev);

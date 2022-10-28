@@ -55,41 +55,6 @@
 
 #include <environment/distro/sf.h>
 
-#define STARLIGHT_FEDORA_BOOTENV \
-	"bootdir=/boot\0" \
-	"bootenv=uEnv.txt\0" \
-	"mmcdev=0\0" \
-	"mmcpart=3\0"
-
-#define STARLIGHT_TEST_BOOTENV \
-	"testpart=0:1\0" \
-	"testenv=u74_uEnv.txt\0" \
-	"mmcsetup=mmc part\0" \
-	"fdtsetup=fdt addr ${fdtcontroladdr}\0" \
-	"fatenv=fatload mmc ${testpart} ${loadaddr} ${testenv};" \
-		"env import -t ${loadaddr} ${filesize}\0"
-
-#define CONFIG_EXTRA_ENV_SETTINGS \
-	STARLIGHT_FEDORA_BOOTENV \
-	"loadaddr=0xa0000000\0" \
-	STARLIGHT_TEST_BOOTENV \
-	"loadbootenv=fatload mmc ${mmcdev} ${loadaddr} ${bootenv}\0" \
-	"ext4bootenv=ext4load mmc ${bootpart} ${loadaddr} ${bootdir}/${bootenv}\0" \
-	"importbootenv=echo Importing environment from mmc${mmcdev} ...; " \
-		"env import -t ${loadaddr} ${filesize}\0" \
-	"mmcbootenv=setenv bootpart ${mmcdev}:${mmcpart}; " \
-		"mmc dev ${mmcdev}; " \
-		"if mmc rescan; then " \
-			"run loadbootenv && run importbootenv; " \
-			"run ext4bootenv && run importbootenv; " \
-			"if test -n $uenvcmd; then " \
-				"echo Running uenvcmd ...; " \
-				"run uenvcmd; " \
-			"fi; " \
-		"fi\0" \
-	"fdtfile=" CONFIG_DEFAULT_FDT_FILE "\0" \
-	BOOTENV \
-	BOOTENV_SF
 
 #define CONFIG_SYS_MAX_FLASH_SECT	0
 #define CONFIG_SYS_MAX_FLASH_BANKS	0
@@ -130,13 +95,13 @@
 /* Magic number at the first four bytes of EEPROM HATs */
 #define STARFIVE_EEPROM_HATS_SIG	"SFVF" /* StarFive VisionFive */
 
-#define CONFIG_STARFIVE_EEPROM_HATS_SIZE_MAX	128 /* Header + Atom1&4(v1) */
-#define CONFIG_STARFIVE_EEPROM_WP_OFFSET	256 /* Read only field */
-#define CONFIG_STARFIVE_EEPROM_ATOM1_PSTR	"VF7100A1-2201-D008E000-00000001\0"
-#define CONFIG_STARFIVE_EEPROM_ATOM1_PSTR_SIZE	32
-#define CONFIG_STARFIVE_EEPROM_ATOM1_SN_OFFSET	23
-#define CONFIG_STARFIVE_EEPROM_ATOM1_VSTR	"StarFive Technology Co., Ltd.\0\0\0"
-#define CONFIG_STARFIVE_EEPROM_ATOM1_VSTR_SIZE	32
+#define STARFIVE_EEPROM_HATS_SIZE_MAX	128 /* Header + Atom1&4(v1) */
+#define STARFIVE_EEPROM_WP_OFFSET	256 /* Read only field */
+#define STARFIVE_EEPROM_ATOM1_PSTR	"VF7100A1-2201-D008E000-00000001\0"
+#define STARFIVE_EEPROM_ATOM1_PSTR_SIZE	32
+#define STARFIVE_EEPROM_ATOM1_SN_OFFSET	23
+#define STARFIVE_EEPROM_ATOM1_VSTR	"StarFive Technology Co., Ltd.\0\0\0"
+#define STARFIVE_EEPROM_ATOM1_VSTR_SIZE	32
 #endif
 
 #endif /* __CONFIG_H */

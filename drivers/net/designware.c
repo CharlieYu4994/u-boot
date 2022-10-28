@@ -252,7 +252,7 @@ static void tx_descs_init(struct dw_eth_dev *priv)
 {
 	struct eth_dma_regs *dma_p = priv->dma_regs_p;
 	struct dmamacdescr *desc_table_p = &TX_MAC_DES[0];
-	char *txbuffs = &TX_BUFF[0];
+	char *txbuffs = &priv->txbuffs[0];
 	struct dmamacdescr *desc_p;
 	u32 idx;
 
@@ -280,7 +280,7 @@ static void tx_descs_init(struct dw_eth_dev *priv)
 	desc_p->dmamac_next = (ulong)&desc_table_p[0];
 
 	/* Flush all Tx buffer descriptors at once */
-	flush_dcache_range((ulong)TX_MAC_DES,
+flush_dcache_range((ulong)TX_MAC_DES,
 			   (ulong)TX_MAC_DES +
 			   sizeof(struct dmamacdescr) * CONFIG_TX_DESCR_NUM);
 

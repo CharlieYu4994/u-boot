@@ -15,6 +15,7 @@ int do_reset(struct cmd_tbl *cmdtp, int flag, int argc, char *const argv[])
 {
 	printf("resetting ...\n");
 
+	//Patch StarFive
 	reset_misc();
 	printf("reset not supported yet\n");
 	hang();

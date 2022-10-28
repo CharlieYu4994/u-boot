@@ -800,6 +800,7 @@ __weak int arch_cpu_init_dm(void)
 {
 	return 0;
 }
+
 #if CONFIG_IS_ENABLED(TARGET_STARFIVE_JH7100)
 extern int board_hw_init(void);
 #endif

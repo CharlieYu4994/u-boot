@@ -200,6 +200,7 @@ int eeprom_write(unsigned dev_addr, unsigned offset,
 	return ret;
 }
 
+//Patch StarFive
 static long parse_numeric_param(char *str)
 {
 	char *endptr;

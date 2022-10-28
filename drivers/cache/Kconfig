@@ -46,6 +46,7 @@ config SIFIVE_CCACHE
 	  This driver is for SiFive Composable L2/L3 cache. It enables cache
 	  ways of composable cache.
 
+#Patch StarFive
 config SIFIVE_CCACHE_WAYENABLE_OPT
 	bool "SiFive composable cache: customized the largest way enabled."
 	depends on SIFIVE_CCACHE

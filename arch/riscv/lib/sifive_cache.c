@@ -26,7 +26,7 @@ void enable_caches(void)
 	}
 }
 
-
+//Patch StarFive
 void flush_dcache_range(unsigned long start, unsigned long end)
 {
 	struct udevice *dev;
